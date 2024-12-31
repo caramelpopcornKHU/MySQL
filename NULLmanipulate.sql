@@ -1,31 +1,41 @@
+
+
 SELECT * FROM copang_main.member;
 
-#데이터 특성 구하기
+# 결측치
+SELECT * FROM copang_main.member
+WHERE address IS NULL
+;
 
-# row 개수 구하기
-SELECT count(age) FROM copang_main.member;
-# count는 null의 개수는 제외하고 보여줌
-SELECT count(*) FROM copang_main.member;
-# 이러면 전체
-
-# 최대값 최소값
-SELECT max(height) FROM copang_main.member;
-SELECT min(age) FROM copang_main.member;
-
-# 평균
-SELECT AVG(weight) FROM copang_main.member;
+# 결측치 제거하고 조회
+SELECT * FROM copang_main.member
+WHERE address IS NOT NULL
+;
 
 
-# SUM(), STD()
-# 위에서 사용했던 함수들이 다 Aggregate Fuction
+# 여러 결측치 조회
+SELECT * FROM copang_main.member
+WHERE address IS NULL
+	OR weight IS NULL
+    OR height IS NULL
+;
 
-# Mathematical Fuction
-# ABS() 절대값
-# SQRT() 제곱근
-# CEIL() 올림
-# FLOOR() 내림
-# ROUND() 반올림
-SELECT FLOOR(weight) FROM copang_main.member
+# COALESCE(A,B) A가 NULL이 아니면 그대로, NULL이면 B
+SELECT 
+	COALESCE(height,'###'),
+    COALESCE(weight,'@@@'),
+    COALESCE(address,'~~~')
+
+FROM copang_main.member;
+
+
+
+
+
+
+
+
+
 
 
 
