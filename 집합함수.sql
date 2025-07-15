@@ -19,4 +19,4 @@ WHERE
     YEAR(e.hire_date) % 2 = 0
 GROUP BY d.department_id
 HAVING AVG(e.salary) >= 7000
-ORDER BY AVG(e.salary)
+ORDER BY AVG(e.salary) DESC
